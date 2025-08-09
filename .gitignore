@@ -14,9 +14,7 @@ venv/
 
 # Reports and generated files
 reports/
-*.html
-*.png
-*.json
+
 
 # OS files
 .DS_Store
