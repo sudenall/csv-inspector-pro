@@ -4,17 +4,19 @@ A command-line tool to analyze your CSV files in seconds, producing statistical 
 
 This Pro version enhances the basic CSV inspection process with:
 
-Outlier detection — Identify anomalies using Z-score or IQR methods
+1. Outlier detection — Identify anomalies using Z-score or IQR methods
 
-Correlation analysis — Heatmap visualization and top correlated pairs filter (--corr-min)
+2. Correlation analysis — Heatmap visualization and top correlated pairs filter (--corr-min)
 
-Data visualization — Histograms and correlation heatmaps for instant insights
+3. Data visualization — Histograms and correlation heatmaps for instant insights
 
-Customizable HTML report title — Set a custom title using --title
+4. Customizable HTML report title — Set a custom title using --title
 
-Target audience: Data analysts, data scientists, engineers, and anyone who needs quick dataset exploration
+### Target audience 
+Data analysts, data scientists, engineers, and anyone who needs quick dataset exploration
 
-Purpose: Provide both numerical and visual summaries of a dataset with a single command
+### Purpose 
+Provide both numerical and visual summaries of a dataset with a single command
 
 ---
 
@@ -76,11 +78,21 @@ reports/report.html (open in browser)
 
 ## Example Output
 
-![Top](images/report_01_top.png)
-![Summary](images/report_02_summary.png)
-![Heatmap](images/report_03_heatmap.png)
-![Histograms](images/report_04_histograms.png)
-
+<p align="center">
+  <a href="images/report_01_top.png">
+    <img src="images/report_01_top.png" alt="Top" width="360"/>
+  </a>
+  <a href="images/report_02_summary.png">
+    <img src="images/report_02_summary.png" alt="Summary" width="360"/>
+  </a>
+  <br/>
+  <a href="images/report_03_heatmap.png">
+    <img src="images/report_03_heatmap.png" alt="Heatmap" width="360"/>
+  </a>
+  <a href="images/report_04_histograms.png">
+    <img src="images/report_04_histograms.png" alt="Histograms" width="360"/>
+  </a>
+</p>
 
 ## How It Works
 
