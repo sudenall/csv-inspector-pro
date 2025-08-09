@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{{ title }}</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; }
+    h1, h2 { margin: 0.4em 0; }
+    table { border-collapse: collapse; margin-top: 12px; }
+    th, td { border: 1px solid #ddd; padding: 6px 10px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+    .imgbox { border: 1px solid #eee; padding: 8px; }
+    small { color: #666; }
+  </style>
+</head>
+<body>
+  <h1>{{ title }}</h1>
+  <p><small>Auto-generated report — csv-inspector</small></p>
+
+  <h2>Summary</h2>
+  <ul>
+    <li>Rows: {{ summary.rows }}</li>
+    <li>Cols: {{ summary.cols }}</li>
+  </ul>
+
+  <h3>Data Types</h3>
+  <table>
+    <tr><th>Column</th><th>dtype</th></tr>
+    {% for c, t in summary.dtypes.items() %}
+      <tr><td>{{ c }}</td><td>{{ t }}</td></tr>
+    {% endfor %}
+  </table>
+
+  <h3>Missing Value Percentage</h3>
+  <table>
+    <tr><th>Column</th><th>% NA</th></tr>
+    {% for c, p in summary.na_percent.items() %}
+      <tr><td>{{ c }}</td><td>{{ "%.2f"|format(p) }}</td></tr>
+    {% endfor %}
+  </table>
+
+  <h3>Outlier Count ({{ summary.outlier_method }}{% if summary.outlier_param %} — {{ summary.outlier_param }}{% endif %})</h3>
+  <p><small>Method: {{ summary.outlier_method }}{% if summary.outlier_param %} ({{ summary.outlier_param }}){% endif %}</small></p>
+
+  <table>
+    <tr><th>Column</th><th>Outliers</th></tr>
+    {% for c, v in summary.outliers.items() %}
+      <tr><td>{{ c }}</td><td>{{ v }}</td></tr>
+    {% endfor %}
+  </table>
+
+  {% if corr_image %}
+    <h2>Correlation Heatmap</h2>
+    <div class="imgbox">
+      <img src="{{ corr_image }}" alt="Correlation Heatmap" style="max-width:100%"/>
+    </div>
+
+    <h3>Top 5 Correlation Pairs</h3>
+    <table>
+      <tr><th>Column A</th><th>Column B</th><th>Correlation</th></tr>
+      {% for a,b,v in top_corr_pairs %}
+        <tr><td>{{ a }}</td><td>{{ b }}</td><td>{{ "%.3f"|format(v) }}</td></tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+
+  {% if hist_images %}
+    <h2>Histograms</h2>
+    <div class="grid">
+      {% for img in hist_images %}
+        <div class="imgbox"><img src="{{ img }}" style="max-width:100%"/></div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</body>
+</html>
